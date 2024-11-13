@@ -12,7 +12,8 @@ public class ButtonStatus : PanelController
     [SerializeField] private Sprite objectImage;
     [SerializeField] private Button objectButton;
     [SerializeField] private Button placeObjectButton;
-    private bool placeObject;
+    private GameObject objectToPlace;
+    private bool haveObject;
 
     private void Awake()
     {
@@ -24,14 +25,19 @@ public class ButtonStatus : PanelController
         objectButton.onClick.AddListener(ChangeStatusMenu);
         placeObjectButton.onClick.AddListener(PlaceObject);
 
-        placeObject = false;
+        haveObject = false;
     }
 
     private void Update()
     {
-        if ()
+        if (haveObject)
         {
 
+            if (Input.GetButtonDown("Fire1"))
+            {
+                haveObject = false;
+                objectToPlace = null;
+            }
         }
     }
 
@@ -52,6 +58,8 @@ public class ButtonStatus : PanelController
     private void PlaceObject()
     {
         CloseObjectMenu();
-        placeObject = true;
+
+        haveObject = true;
+        objectToPlace = Instantiate(placeabledObject, new Vector3(0f, 0f, 0f), Quaternion.identity);
     }
 }
