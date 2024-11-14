@@ -63,11 +63,11 @@ public class PlayerStatus : MonoBehaviour
         switch (_type)
         {
             case "money":
-                moneyTXT.text = "$" + money.ToString();
+                moneyTXT.text = "$" + money.ToString("N0");
                 break;
 
             case "science":
-                scienceTXT.text = sciencePoint.ToString();
+                scienceTXT.text = sciencePoint.ToString("N0") + "RP";
                 break;
         }
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [Header("Movement")]
+    [SerializeField] private int maxZoom;
+    [SerializeField] private int minZoom;
     [SerializeField] private float speed;
     private Rigidbody rb;
     private Camera cam;
@@ -16,6 +18,14 @@ public class CameraController : MonoBehaviour
     }
 
     private void Update()
+    {
+        MoveCamera();
+
+        if (Input.mouseScrollDelta.y > 0 && transform.position.y >= minZoom) transform.position -= new Vector3(0f, 1f, 0f);
+        else if (Input.mouseScrollDelta.y < 0 && transform.position.y <= maxZoom) transform.position += new Vector3(0f, 1f, 0f);
+    }
+
+    private void MoveCamera()
     {
         if (Input.GetMouseButtonDown(0)) mousePos = Input.mousePosition;
         else if (Input.GetMouseButton(0))

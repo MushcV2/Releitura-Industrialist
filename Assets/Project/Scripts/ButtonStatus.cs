@@ -26,6 +26,11 @@ public class ButtonStatus : PanelController
         placeObjectButton.onClick.AddListener(PlaceObject);
     }
 
+    private void Update()
+    {
+        if (statusMenu.activeSelf && statusMenu.transform.Find("ObjectName").GetComponent<TextMeshProUGUI>().text == objectName && Input.GetKeyDown(KeyCode.T)) PlaceObject();
+    }
+
     private void ChangeStatusMenu()
     {
         statusMenu.SetActive(true);
